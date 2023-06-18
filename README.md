@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/blob/main/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/graphs/commit-activity)
-[![JavaScript](https://img.shields.io/badge/--F7DF1E?logo=javascript&logoColor=000)](https://www.javascript.com/)
+[![TypeScript](https://img.shields.io/badge/--F7DF1E?logo=typescript&logoColor=000)](https://https://www.typescriptlang.org//)
 [![GitHub issues](https://badgen.net/github/issues/rodolphe37/electron-react-javascript-boilerplate/)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/issues)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rodolphe37/electron-react-javascript-boilerplate/main)
@@ -17,9 +17,7 @@
 
 ### This version use Electron v25.1.1 & React v18.2.0 (from create-react-app)
 
-> This branch is electron with ESM module (if you want commonjs instead go to commonjs branch)
-
-> Currently available in JavaScript, the TypeScript version will be available shortly.
+> This is typeScript version, if you want javascript version [click here](https://github.com/rodolphe37/electron-react-javascript-boilerplate).
 
 ---
 
@@ -89,7 +87,7 @@ Let’s start from an “empty” React app generated with [Create React App](ht
 > Using [npx](https://www.npmjs.com/package/npx) to run create-react-app.
 
 ```
-npx create-react-app my-electron-app
+npx create-react-app my-electron-app --template typescript
 ```
 
 Then, add the following dependencies (most of them are here only to simplify the development flow):
@@ -99,14 +97,9 @@ cd my-electron-app
 ```
 
 ```
-yarn add esm
-```
-
-```
 yarn add -D concurrently cross-env electron electron-builder electronmon wait-on @babel/plugin-proposal-private-property-in-object
 ```
 
-- [`esm`](https://reactjsexample.com/use-es-modules-in-electron/): For the last few years, Node.js has been working to support running ECMAScript modules (ESM). This has been a very difficult feature to support, since the foundation of the Node.js ecosystem is built on a different module system called CommonJS (CJS).
 - [`concurrently`](https://github.com/open-cli-tools/concurrently): Run multiple commands concurrently. We’ll use it to run both the Electron process and the React app in watch mode.
 - [`cross-env`](https://github.com/kentcdodds/cross-env): Run scripts that set and use environment variables across different platforms. We’ll use it to make our scripts compatible with both Unix and Windows OSes.
 - [`electron`](https://www.electronjs.org/): The core framework for creating the app.
@@ -273,33 +266,82 @@ process.once("loaded", () => {
 });
 ```
 
-And replace App.js content by :
+First modification is in index.tsx
 
 ```javascript
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 const versions = window.versions;
 
-function App() {
-  const func = async () => {
-    const response = await versions.ping();
-    console.log(response); // Displays 'pong'.
-  };
+root.render(
+  <React.StrictMode>
+    <App
+      versions={versions}
+      chrome={versions.chrome()}
+      node={versions.node()}
+      electron={versions.electron()}
+      ping={versions.ping()}
+    />
+  </React.StrictMode>
+);
 
-  func();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+And replace App.tsx content by :
+
+```javascript
+import React, { useCallback, useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+type AppProps = {
+  versions: any,
+  chrome: () => any,
+  node: () => any,
+  electron: () => any,
+  ping: () => any,
+};
+
+function App({ chrome, node, electron, ping, versions }: AppProps) {
+  const [isLoading, setIsLoading] = useState < boolean > false;
+
+  const func = useCallback(async () => {
+    const response = await ping;
+    console.log("ping", response); // Displays 'pong'.
+  }, [ping]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    if (isLoading) {
+      func();
+    }
+
+    return () => setIsLoading(false);
+  }, [isLoading, func]);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p
           style={{ fontSize: "1rem", maxWidth: 400 }}
           id="info"
-        >{`This application use Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`}</p>
+        >{`This application use Chrome (v${chrome}), Node.js (v${node}), and Electron (v${electron})`}</p>
         <div
           style={{
             display: "flex",
