@@ -1,11 +1,11 @@
  <img  style =" margin-top: -12px; margin-right: 22px " src="electronjs.svg" alt="drawing" height="60" width="150"/>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/blob/main/LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/graphs/commit-activity)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/rodolphe37/electron-react-typescript-boilerplate/blob/main/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/rodolphe37/electron-react-typescript-boilerplate/graphs/commit-activity)
 [![TypeScript](https://img.shields.io/badge/--F7DF1E?logo=typescript&logoColor=000)](https://https://www.typescriptlang.org//)
-[![GitHub issues](https://badgen.net/github/issues/rodolphe37/electron-react-javascript-boilerplate/)](https://github.com/rodolphe37/electron-react-javascript-boilerplate/issues)
+[![GitHub issues](https://badgen.net/github/issues/rodolphe37/electron-react-typescript-boilerplate/)](https://github.com/rodolphe37/electron-react-typescript-boilerplateissues)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rodolphe37/electron-react-javascript-boilerplate/main)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rodolphe37/electron-react-typescript-boilerplate/main)
 
 <img   src="https://badges.aleen42.com/src/react.svg" alt="drawing" height="20" width="65"/>
 
