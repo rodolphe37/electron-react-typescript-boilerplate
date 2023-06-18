@@ -17,7 +17,7 @@
 
 ### This version use Electron v25.1.1 & React v18.2.0 (from create-react-app)
 
-> This is typeScript version, if you want javascript version [click here](https://github.com/rodolphe37/electron-react-javascript-boilerplate).
+> This is TypeScript version, if you want JavaScript version [click here](https://github.com/rodolphe37/electron-react-javascript-boilerplate).
 
 ---
 
