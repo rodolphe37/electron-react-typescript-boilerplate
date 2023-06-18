@@ -299,6 +299,18 @@ root.render(
 reportWebVitals();
 ```
 
+Then create index.d.ts file into types folder (in your src folder).
+
+```javascript
+export {};
+
+declare global {
+  interface Window {
+    versions: any; // 👈️ turn off type checking
+  }
+}
+```
+
 And replace App.tsx content by :
 
 ```javascript
