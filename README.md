@@ -284,7 +284,6 @@ const versions = window.versions;
 root.render(
   <React.StrictMode>
     <App
-      versions={versions}
       chrome={versions.chrome()}
       node={versions.node()}
       electron={versions.electron()}
@@ -319,14 +318,13 @@ import logo from "./logo.svg";
 import "./App.css";
 
 type AppProps = {
-  versions: any,
   chrome: () => any,
   node: () => any,
   electron: () => any,
   ping: () => any,
 };
 
-function App({ chrome, node, electron, ping, versions }: AppProps) {
+function App({ chrome, node, electron, ping }: AppProps) {
   const [isLoading, setIsLoading] = useState < boolean > false;
 
   const func = useCallback(async () => {

@@ -13,7 +13,6 @@ const versions = window.versions;
 root.render(
   <React.StrictMode>
     <App
-      versions={versions}
       chrome={versions.chrome()}
       node={versions.node()}
       electron={versions.electron()}
